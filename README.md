@@ -1,3 +1,3 @@
-# **ISTIA_IHMRV_Project_KitchenAssistant**
+# **Kitchen assistant**
 This is the javascript project made by four students from the IHMRV specialization.
 ## **Cahier des charges**
