@@ -1,0 +1,4 @@
+export default {
+	ADD_NEW_DRINK: 'ADD_NEW_DRINK',
+	ADD_NEW_PRICES: 'ADD_NEW_PRICES'
+}

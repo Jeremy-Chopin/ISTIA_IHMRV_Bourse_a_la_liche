@@ -1,0 +1,10 @@
+form .add-drink{
+    display: flex;
+    flex-wrap: row wrap;
+    justify-content: flex-start;
+    max-width: 50px;
+}
+
+.initial-price , .min-price , .max-price {
+    padding: 0 20px;
+}
