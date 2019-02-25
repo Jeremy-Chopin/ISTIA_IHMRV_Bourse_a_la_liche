@@ -17,7 +17,7 @@ class ConfigurationStore extends EventEmitter {
 	_registerToActions(action) {
 		switch(action.actionType) {
 			case ActionTypes.ADD_NEW_DRINK:
-				this._addNewPrices(action.payload);
+				this._addNewDrink(action.payload);
 			break;
 		}
     }
@@ -44,14 +44,6 @@ class ConfigurationStore extends EventEmitter {
 		this.removeListener(CHANGE, callback);
     }
     
-    // Switches over the action's type when an action is dispatched.
-	_registerToActions(action) {
-		switch(action.actionType) {
-			case ActionTypes.ADD_NEW_PRICES:
-				this._addNewPrices(action.payload);
-			break;
-		}
-    }
     
     // Adds a new item to the list and emits a CHANGED event. 
 	_addNewPrices(drink) {

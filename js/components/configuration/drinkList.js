@@ -8,12 +8,11 @@ class DrinkList extends React.Component {
 		this.state = {
 			drink: ConfigurationStore.getAllDrinks()
 		};
-
 		this._onChange = this._onChange.bind(this);
 	}
 
 	_onChange() {
-		//this.setState({ drink: ConfigurationStore.getAllDrinks() });
+		this.setState({ drink: ConfigurationStore.getAllDrinks() });
 	}
 
 	componentWillMount() {
@@ -25,7 +24,6 @@ class DrinkList extends React.Component {
 	}
 	
 	render() {
-
 		let noDrinkMessage;
 
 		// Show a friendly message instead if there are no items.
