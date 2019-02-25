@@ -1,5 +1,7 @@
 import React from 'react';
 import ConfigurationAction from '../../actions/configurationActions';
+import ConfigurationStore from '../../stores/configurationStore';
+
 
 class AddNewDrink extends React.Component {
 
@@ -34,18 +36,20 @@ class AddNewDrink extends React.Component {
 	}
 
     _addNewDrink(event) {
+        if(!this.state.drink.name || !this.state.drink.initialPrice || !this.state.drink.maxPrice || !this.state.drink.minPrice){
+            return;
+        }
         event.preventDefault();
 		this.state.drink.name = this.state.drink.name;
-        this.state.drink.initialPrice = this.state.drink.initialPrice || '0';
-        this.state.drink.minPrice = this.state.drink.minPrice || '0';
-        this.state.drink.maxPrice = this.state.drink.maxPrice || '0';
-		ConfigurationAction.addNewDrink(this.state.drink);
+        this.state.drink.initialPrice = this.state.drink.initialPrice;
+        this.state.drink.minPrice = this.state.drink.minPrice;
+        this.state.drink.maxPrice = this.state.drink.maxPrice;
+        ConfigurationAction.addNewDrink(this.state.drink);
         this.setState({ drink : this._getFreshDrink() });
         document.getElementById("configuration-form").reset();
     }
 
     render() {
-
         return (
             <div>
                 <h2 className="drink-form">Met la gnole</h2>
