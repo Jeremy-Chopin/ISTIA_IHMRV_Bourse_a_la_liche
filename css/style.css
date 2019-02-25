@@ -8,3 +8,15 @@ form .add-drink{
 .initial-price , .min-price , .max-price {
     padding: 0 20px;
 }
+
+.body-home {
+    width: 1366px;
+    height: 768px;
+    background: white url("res/bourse_logo.png") no-repeat 100% 100%;
+    }
+
+.body-home .btnToConfig {
+    margin-left: 200px;
+    width: 200px;
+    height: 100px;
+}
