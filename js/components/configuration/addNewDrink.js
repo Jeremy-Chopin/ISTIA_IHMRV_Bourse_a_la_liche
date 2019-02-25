@@ -36,10 +36,12 @@ class AddNewDrink extends React.Component {
 	}
 
     _addNewDrink(event) {
+        event.preventDefault();   
+
         if(!this.state.drink.name || !this.state.drink.initialPrice || !this.state.drink.maxPrice || !this.state.drink.minPrice){
-            return;
+            return;     
         }
-        event.preventDefault();
+        
 		this.state.drink.name = this.state.drink.name;
         this.state.drink.initialPrice = this.state.drink.initialPrice;
         this.state.drink.minPrice = this.state.drink.minPrice;
