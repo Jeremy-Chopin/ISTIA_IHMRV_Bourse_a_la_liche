@@ -11,7 +11,7 @@ export default function MainRouter () {
           <div>
               <Route exact path="/" component={Home}/>
               <Route path="/configuration" component={Configuration}/>
-              <Route path="/chart" component={Chart}/>
+              <Route path="/charts" component={Chart}/>
           </div>
       </Router>
   )
