@@ -1,15 +1,9 @@
 import React from 'react';
 //Components
-import AddNewDrink from './AddNewDrink';
-import DrinkList from './DrinkList';
+import AddNewDrink from './configuration/addNewDrink';
+import DrinkList from './configuration/DrinkList';
 
 //Stores
-import RouterStore from '../stores/routerStore';
-
-//Actions
-import RouterAction from '../actions/routerAction';
-
-
 
 class App extends React.Component {
 
@@ -23,7 +17,6 @@ class App extends React.Component {
 	submitDrinks() {
 		
 		this.setState({route: '/charts'})
-		RouterAction.changeRoute(this.state.route);
 
 	}
 

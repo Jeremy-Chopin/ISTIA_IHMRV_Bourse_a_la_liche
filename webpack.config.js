@@ -26,6 +26,7 @@ module.exports = {
 	devServer: {
 		hot: true,
 		inline: true,
-		contentBase: '.'
+		contentBase: '.',
+		historyApiFallback: true
 	}
 }

@@ -1,6 +1,5 @@
 import React from 'react';
-import DrinkStore from '../stores/drinkStore';
-import RouterAction from '../actions/routerAction';
+import DrinkStore from '../../stores/drinkStore';
 
 
 class DrinkList extends React.Component {
@@ -25,10 +24,7 @@ class DrinkList extends React.Component {
 	componentWillUnmount() {
 		DrinkStore.removeChangeListener(this._onChange);
 	}
-	submitDrinks() {
-		RouterAction.changeRoute('charts');	
-	}
-
+	
 	render() {
 
 		let noDrinkMessage;

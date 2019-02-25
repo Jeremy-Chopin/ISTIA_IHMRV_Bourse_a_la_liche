@@ -14,30 +14,7 @@ class PricesStore extends EventEmitter {
         Dispatcher.register(this._registerToActions.bind(this));
     }
 
-    // Switches over the action's type when an action is dispatched.
-	_registerToActions(action) {
-		switch(action.actionType) {
-			case ActionTypes.ADD_NEW_PRICES:
-				this._addNewPrices(action.payload);
-			break;
-		}
-    }
     
-    // Adds a new item to the list and emits a CHANGED event. 
-	_addNewPrices(drink) {
-		drink.id = _drinkState.length;
-		_drinkState.push(drink);
-		this.emit(CHANGE);
-    }
-    
-    // Returns the current store's state.
-	getLastPrices() {
-		return pricesState;
-    }
-    
-    getLastNPrices(limit) {
-        return pricesState
-    }
     // Hooks a React component's callback to the CHANGE event.
 	addChangeListener(callback) {
 		this.on(CHANGE, callback);
