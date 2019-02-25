@@ -53,10 +53,55 @@ class Charts extends React.Component {
     }
 
     render() {
+      let btnDisp;
+      const bitasse = 3;
 
-      this.simulateAchat();
-      return (<div>toto</div>);
+      switch (bitasse) {
+        case 2:
+        btnDisp = (
+          <div className="container">
+            <div className="row">
+              <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 1'/>
+              <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 2'/>
+            </div>
+          </div>
+        );
 
+        break;
+
+        case 3:
+        btnDisp = (
+          <div className="container">
+            <div className="row">
+              <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 1'/>
+              <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 2'/>
+              <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 3'/>
+            </div>
+          </div>
+        );
+
+        break;
+
+        case 4:
+        btnDisp = (
+          <div className="container">
+            <div className="row">
+              <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 1'/>
+              <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 2'/>
+              <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 3'/>
+              <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 4'/>
+            </div>
+          </div>
+        );
+
+       console.log("OOOOOOOOOH DJA DJAAAAA");
+          break;
+      
+        default:
+          break;
+      }
+      this.simulateAchat();	
+      return(btnDisp);
     }
 }
 export default Charts
