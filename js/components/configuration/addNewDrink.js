@@ -12,6 +12,7 @@ class AddNewDrink extends React.Component {
         };
     }
 
+
     _getFreshDrink() {
         return {
             name: '',
@@ -25,7 +26,7 @@ class AddNewDrink extends React.Component {
 		let field = event.target.name;
 		let value = event.target.value;
 		// If the amount is changed and it's not a float, return.
-		if (value) {
+		if (!value) {
 			return;
 		}
 		this.state.drink[field] = value;
@@ -33,7 +34,6 @@ class AddNewDrink extends React.Component {
 	}
 
     _addNewDrink(event) {
-        console.log("la bite")
         event.preventDefault();
 		this.state.drink.name = this.state.drink.name;
         this.state.drink.initialPrice = this.state.drink.initialPrice || '0';
@@ -41,13 +41,15 @@ class AddNewDrink extends React.Component {
         this.state.drink.maxPrice = this.state.drink.maxPrice || '0';
 		ConfigurationAction.addNewDrink(this.state.drink);
         this.setState({ drink : this._getFreshDrink() });
+        document.getElementById("configuration-form").reset();
     }
 
     render() {
+
         return (
             <div>
                 <h2 className="drink-form">Met la gnole</h2>
-                <form className="form-inline add-item" onSubmit={this._addNewDrink.bind(this)}>
+                <form id="configuration-form" className="form-inline add-item" onSubmit={this._addNewDrink.bind(this)}>
                     <input type="text" className="form-control description" name="name" value={this.state.drink.description} placeholder="Description" onChange={this._updateState.bind(this)} />
                     <input type="text" className="form-control initial" name="initialPrice" value={this.state.drink.initialPrice} placeholder="Intial Price" onChange={this._updateState.bind(this)} />
                     <input type="text" className="form-control" name="minPrice" value={this.state.drink.minPrice} placeholder="Min Price" onChange={this._updateState.bind(this)} />

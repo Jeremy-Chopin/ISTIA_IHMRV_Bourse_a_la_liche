@@ -1,8 +1,6 @@
 import React from 'react';
 import ConfigurationStore from '../../stores/configurationStore';
 
-let _drinkState = [];
-
 class DrinkList extends React.Component {
 
 	constructor(props) {
@@ -11,11 +9,11 @@ class DrinkList extends React.Component {
 			drink: ConfigurationStore.getAllDrinks()
 		};
 
-		//this._onChange = this._onChange.bind(this);
+		this._onChange = this._onChange.bind(this);
 	}
-/*
+
 	_onChange() {
-		this.setState({ drink: ConfigurationStore.getAllDrinks() });
+		//this.setState({ drink: ConfigurationStore.getAllDrinks() });
 	}
 
 	componentWillMount() {
@@ -25,7 +23,7 @@ class DrinkList extends React.Component {
 	componentWillUnmount() {
 		ConfigurationStore.removeChangeListener(this._onChange);
 	}
-	*/
+	
 	render() {
 
 		let noDrinkMessage;
