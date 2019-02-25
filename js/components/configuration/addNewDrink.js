@@ -25,7 +25,7 @@ class AddNewDrink extends React.Component {
 		let field = event.target.name;
 		let value = event.target.value;
 		// If the amount is changed and it's not a float, return.
-		if (value && !value.match(/^[a-z0-9.\+\-]+$/g)) {
+		if (value) {
 			return;
 		}
 		this.state.drink[field] = value;
@@ -33,6 +33,7 @@ class AddNewDrink extends React.Component {
 	}
 
     _addNewDrink(event) {
+        console.log("la bite")
         event.preventDefault();
 		this.state.drink.name = this.state.drink.name;
         this.state.drink.initialPrice = this.state.drink.initialPrice || '0';
@@ -53,7 +54,6 @@ class AddNewDrink extends React.Component {
                     <input type="text" className="form-control" name="maxPrice" value={this.state.drink.maxPrice} placeholder="Max Price" onChange={this._updateState.bind(this)} />
                     <button type="submit" className="btn btn-primary add">Ajouter</button>
                 </form>
-
             </div>
         )
     }

@@ -1,30 +1,31 @@
 import React from 'react';
-import DrinkStore from '../../stores/drinkStore';
+import ConfigurationStore from '../../stores/configurationStore';
 
+let _drinkState = [];
 
 class DrinkList extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			drink: DrinkStore.getAllDrinks()
+			drink: ConfigurationStore.getAllDrinks()
 		};
 
-		this._onChange = this._onChange.bind(this);
+		//this._onChange = this._onChange.bind(this);
 	}
-
+/*
 	_onChange() {
-		this.setState({ drink: DrinkStore.getAllDrinks() });
+		this.setState({ drink: ConfigurationStore.getAllDrinks() });
 	}
 
 	componentWillMount() {
-		DrinkStore.addChangeListener(this._onChange);
+		ConfigurationStore.addChangeListener(this._onChange);
 	}
 
 	componentWillUnmount() {
-		DrinkStore.removeChangeListener(this._onChange);
+		ConfigurationStore.removeChangeListener(this._onChange);
 	}
-	
+	*/
 	render() {
 
 		let noDrinkMessage;

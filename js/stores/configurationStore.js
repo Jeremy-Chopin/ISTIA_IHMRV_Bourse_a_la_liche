@@ -2,6 +2,9 @@ import { EventEmitter } from 'events';
 import Dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
 
+let _drinkState = [];
+const CHANGE = 'CHANGE';
+
 class ConfigurationStore extends EventEmitter {
     constructor() {
         super();
