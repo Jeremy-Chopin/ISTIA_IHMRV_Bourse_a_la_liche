@@ -10,6 +10,20 @@ class ConfigurationActions {
 			payload: drink 
 		});
 	}
+	setNumberOfDrinks(numberOfDrinks) {
+		// Note: This is usually a good place to do API calls.
+		Dispatcher.dispatch({
+			actionType: ActionTypes.SET_NUMBER_OF_DRINKS,
+			payload: numberOfDrinks
+		});
+	}
+	setRefraishingTimeInterval(refraishingTimeInterval) {
+		// Note: This is usually a good place to do API calls.
+		Dispatcher.dispatch({
+			actionType: ActionTypes.SET_REFRAISHING_TIME_INTERVAL,
+			payload: refraishingTimeInterval 
+		});
+	}
 }
 
 export default new ConfigurationActions();
