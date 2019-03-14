@@ -21,15 +21,7 @@ class Configuration extends React.Component {
             numberOfDrinks: "",
             refreshingTime: "",
             drink: this._getFreshDrink(),
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-=======
             redirect: false
->>>>>>> Stashed changes
-=======
-            redirect: false
->>>>>>> Stashed changes
         };
 
     }
@@ -70,12 +62,6 @@ class Configuration extends React.Component {
         this.setState({ drink: this.state.drink });
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-=======
-=======
->>>>>>> Stashed changes
     setRedirect = () => {
         this.setState({
             redirect: true
@@ -86,10 +72,6 @@ class Configuration extends React.Component {
             return <Redirect to='/charts' />
         }
     }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
     onSubmitForm() {
         event.preventDefault();
@@ -119,14 +101,6 @@ class Configuration extends React.Component {
         if (!this.state.refreshingTime || !this.state.numberOfDrinks) {
             return;
         }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-        debugger
->>>>>>> Stashed changes
-=======
-        debugger
->>>>>>> Stashed changes
         ConfigurationActions.setRefreshingTimeInterval(this.state.refreshingTime);
         ConfigurationActions.setNumberOfDrinks(this.state.numberOfDrinks);
     }
@@ -140,14 +114,6 @@ class Configuration extends React.Component {
         if(!(parseInt(this.state.drink.minPrice) < parseInt(this.state.drink.initialPrice) && parseInt(this.state.drink.initialPrice) < parseInt(this.state.drink.maxPrice))){
             return;
         }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-        debugger
->>>>>>> Stashed changes
-=======
-        debugger
->>>>>>> Stashed changes
         ConfigurationActions.addNewDrink(this.state.drink);
         this.setState({ drink: this._getFreshDrink() });
         document.getElementById("drink-form").reset();
@@ -158,16 +124,7 @@ class Configuration extends React.Component {
     renderSubmitButton() {
         if (this.state.refreshingTime && this.state.numberOfDrinks && ConfigurationStore.getAllDrinks().length > 0) {
             return (
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                <button type="button" className="btn btn-primary add" Ca part en Prod/>
-=======
-                <button type="button" className="btn btn-primary add" onClick={this.setRedirect} >Ca part en Prod</button>
->>>>>>> Stashed changes
-=======
-                <button type="button" className="btn btn-primary add" onClick={this.setRedirect} >Ca part en Prod</button>
->>>>>>> Stashed changes
-                
+                <button type="button" className="btn btn-primary add" onClick={this.setRedirect} >Ca part en Prod</button>                
             );
         }
         else {
@@ -205,14 +162,7 @@ class Configuration extends React.Component {
                 {this._renderAddNewDrink()}
                 <DrinkList />
                 {this.renderSubmitButton()}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-                {this.renderRedirect()}s
->>>>>>> Stashed changes
-=======
-                {this.renderRedirect()}s
->>>>>>> Stashed changes
+                {this.renderRedirect()}
             </div>
         );
     }
