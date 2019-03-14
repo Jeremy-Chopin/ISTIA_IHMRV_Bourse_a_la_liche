@@ -76,10 +76,22 @@ class Charts extends React.Component {
 
 
 
+  renderButton() {
+    const drinkList = ConfigurationStore.getAllDrinks();
+    let numberOfDrinks = ConfigurationStore._getNumberOfDrink();
+    let renderButton = [];
+    for (let i = 0; i < numberOfDrinks; i++) {
+      renderButton.push(<input type='button' className="btn btn-success btnConso" value={drinkList[i].name} onClick={} />);
+    }
+    
+    //Corriger renderButton
+  }
+
+
   render() {
     let btnDisp;
     const bitasse = 3;
-    
+    /*
         switch (bitasse) {
           case 2:
             btnDisp = (
@@ -124,11 +136,12 @@ class Charts extends React.Component {
           default:
             break;
         }
-     
-
+        */
+       //{this.renderButton} a mettre entre div quand ce sera bon
     console.log(this.state)
     return (
       <div>
+        
       </div>
     );
   }
