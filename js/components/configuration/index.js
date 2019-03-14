@@ -21,7 +21,11 @@ class Configuration extends React.Component {
             numberOfDrinks: "",
             refreshingTime: "",
             drink: this._getFreshDrink(),
+<<<<<<< Updated upstream
 
+=======
+            redirect: false
+>>>>>>> Stashed changes
         };
 
     }
@@ -62,7 +66,20 @@ class Configuration extends React.Component {
         this.setState({ drink: this.state.drink });
     }
 
+<<<<<<< Updated upstream
 
+=======
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    }
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/charts' />
+        }
+    }
+>>>>>>> Stashed changes
 
     onSubmitForm() {
         event.preventDefault();
@@ -92,6 +109,10 @@ class Configuration extends React.Component {
         if (!this.state.refreshingTime || !this.state.numberOfDrinks) {
             return;
         }
+<<<<<<< Updated upstream
+=======
+        debugger
+>>>>>>> Stashed changes
         ConfigurationActions.setRefreshingTimeInterval(this.state.refreshingTime);
         ConfigurationActions.setNumberOfDrinks(this.state.numberOfDrinks);
     }
@@ -105,6 +126,10 @@ class Configuration extends React.Component {
         if(!(parseInt(this.state.drink.minPrice) < parseInt(this.state.drink.initialPrice) && parseInt(this.state.drink.initialPrice) < parseInt(this.state.drink.maxPrice))){
             return;
         }
+<<<<<<< Updated upstream
+=======
+        debugger
+>>>>>>> Stashed changes
         ConfigurationActions.addNewDrink(this.state.drink);
         this.setState({ drink: this._getFreshDrink() });
         document.getElementById("drink-form").reset();
@@ -115,7 +140,11 @@ class Configuration extends React.Component {
     renderSubmitButton() {
         if (this.state.refreshingTime && this.state.numberOfDrinks && ConfigurationStore.getAllDrinks().length > 0) {
             return (
+<<<<<<< Updated upstream
                 <button type="button" className="btn btn-primary add" Ca part en Prod/>
+=======
+                <button type="button" className="btn btn-primary add" onClick={this.setRedirect} >Ca part en Prod</button>
+>>>>>>> Stashed changes
                 
             );
         }
@@ -154,6 +183,10 @@ class Configuration extends React.Component {
                 {this._renderAddNewDrink()}
                 <DrinkList />
                 {this.renderSubmitButton()}
+<<<<<<< Updated upstream
+=======
+                {this.renderRedirect()}s
+>>>>>>> Stashed changes
             </div>
         );
     }
