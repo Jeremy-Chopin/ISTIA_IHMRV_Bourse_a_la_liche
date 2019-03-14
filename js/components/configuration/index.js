@@ -22,7 +22,11 @@ class Configuration extends React.Component {
             refreshingTime: "",
             drink: this._getFreshDrink(),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+            redirect: false
+>>>>>>> Stashed changes
 =======
             redirect: false
 >>>>>>> Stashed changes
@@ -67,8 +71,11 @@ class Configuration extends React.Component {
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 =======
+=======
+>>>>>>> Stashed changes
     setRedirect = () => {
         this.setState({
             redirect: true
@@ -79,6 +86,9 @@ class Configuration extends React.Component {
             return <Redirect to='/charts' />
         }
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
     onSubmitForm() {
@@ -110,6 +120,10 @@ class Configuration extends React.Component {
             return;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        debugger
+>>>>>>> Stashed changes
 =======
         debugger
 >>>>>>> Stashed changes
@@ -127,6 +141,10 @@ class Configuration extends React.Component {
             return;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        debugger
+>>>>>>> Stashed changes
 =======
         debugger
 >>>>>>> Stashed changes
@@ -141,7 +159,11 @@ class Configuration extends React.Component {
         if (this.state.refreshingTime && this.state.numberOfDrinks && ConfigurationStore.getAllDrinks().length > 0) {
             return (
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <button type="button" className="btn btn-primary add" Ca part en Prod/>
+=======
+                <button type="button" className="btn btn-primary add" onClick={this.setRedirect} >Ca part en Prod</button>
+>>>>>>> Stashed changes
 =======
                 <button type="button" className="btn btn-primary add" onClick={this.setRedirect} >Ca part en Prod</button>
 >>>>>>> Stashed changes
@@ -184,6 +206,10 @@ class Configuration extends React.Component {
                 <DrinkList />
                 {this.renderSubmitButton()}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+                {this.renderRedirect()}s
+>>>>>>> Stashed changes
 =======
                 {this.renderRedirect()}s
 >>>>>>> Stashed changes
