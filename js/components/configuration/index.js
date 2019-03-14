@@ -1,6 +1,7 @@
 import React from 'react';
 import ConfigurationActions from '../../actions/ConfigurationActions';
 import ConfigurationStore from '../../stores/configurationStore';
+import { Redirect } from 'react-router-dom'
 
 import DrinkList from './drinkList';
 
@@ -19,14 +20,12 @@ class Configuration extends React.Component {
         this.state = {
             numberOfDrinks: "",
             refreshingTime: "",
-            drink: this._getFreshDrink()
+            drink: this._getFreshDrink(),
         };
 
     }
 
     // Default State Methods
-
-
     _getFreshDrink() {
         return {
             name: '',
@@ -62,6 +61,7 @@ class Configuration extends React.Component {
         this.setState({ drink: this.state.drink });
     }
 
+
     onSubmitForm() {
         event.preventDefault();
         if (this.state.numberOfDrinks < 1 || this.state.numberOfDrinks > 6) {
@@ -73,13 +73,10 @@ class Configuration extends React.Component {
             
         }
         else {
+            ConfigurationActions.setRefraishingTimeInterval(this.state.refreshingTime);
+            ConfigurationActions.setNumberOfDrinks(this.state.numberOfDrinks);
+            return <Redirect to='/charts' />
             
-            return;
-        }
-        else {
-            ConfigurationActions.setRefraishingTimeInterval(this.state.refreshingTime):
-            ConfigurationActions.setNumberOfDrinks(this.state.refreshingTime)
-            return(<Redirect to='/charts' />)
         }
     }
 
@@ -91,7 +88,7 @@ class Configuration extends React.Component {
         if (!this.state.drink.name || !this.state.drink.initialPrice || !this.state.drink.maxPrice || !this.state.drink.minPrice) {
             return;
         }
-        if(!(this.state.drink.minPrice < this.state.drink.initialPrice && this.state.drink.initialPrice < this.state.drink.maxPrice)){
+        if(!(parseInt(this.state.drink.minPrice) < parseInt(this.state.drink.initialPrice) && parseInt(this.state.drink.initialPrice) < parseInt(this.state.drink.maxPrice))){
             return;
         }
 
@@ -100,12 +97,22 @@ class Configuration extends React.Component {
         document.getElementById("drink-form").reset();
     }
 
+    
+    handleSubmit = (user) => {
+        saveUser(user)
+          .then(() => this.setState(() => ({
+            toDashboard: true
+          })))
+      }
+
+
+
     // render methods
 
     renderSubmitButton() {
         if (this.state.refreshingTime && this.state.numberOfDrinks && ConfigurationStore.getAllDrinks().length > 0) {
             return (
-                <button type="submit" className="btn btn-primary add">Ca part en Prod</button>
+                <button type="submit" className="btn btn-primary add" >Ca part en Prod</button>
             );
         }
         else {
@@ -118,9 +125,9 @@ class Configuration extends React.Component {
     _renderAddNewDrink() {
         return (
             <div>
-                <h2 className="drink-form">Met la gnole</h2>
+                <h2 className="configuration-title-drink">Met la gnole</h2>
                 <form id="drink-form" className="form-inline add-item" >
-                    <input type="text" className="form-control description" name="name" value={this.state.drink.description} placeholder="Description" onChange={this.handleDrinksChange.bind(this)} />
+                    <input type="text" className="form-control description configuration-drink-form" name="name" value={this.state.drink.description} placeholder="Description" onChange={this.handleDrinksChange.bind(this)} />
                     <input type="text" className="form-control initial" name="initialPrice" value={this.state.drink.initialPrice} placeholder="Intial Price" onChange={this.handleDrinksChange.bind(this)} />
                     <input type="text" className="form-control" name="minPrice" value={this.state.drink.minPrice} placeholder="Min Price" onChange={this.handleDrinksChange.bind(this)} />
                     <input type="text" className="form-control" name="maxPrice" value={this.state.drink.maxPrice} placeholder="Max Price" onChange={this.handleDrinksChange.bind(this)} />
@@ -134,8 +141,8 @@ class Configuration extends React.Component {
         console.log(ConfigurationStore.getAllDrinks())
         return (
             <div>
-                <h2 className="configuration-form">Configuration Générale</h2>
-                <form id="configuration-general-form" className="form-inline add-item" onSubmit={this.onSubmitForm.bind(this)}>
+                <h2 className="configuration-title-general">Configuration Générale</h2>
+                <form id="configuration-general-form" className="form-inline add-item configuration-general-form" onSubmit={this.onSubmitForm.bind(this)}>
                     <input type="text" className="form-control " name="number" value={this.state.numberOfDrinks} onChange={this.handleNumberOfDrinksChange.bind(this)} placeholder="Nombre de Boissons [1; 6]" />
                     <input type="text" className="form-control " name="number" value={this.state.refreshingTime} onChange={this.handleRefreshingTimeIntervalChange.bind(this)} placeholder="Interval de rafraichissement [20; 600] sec" />
                 </form>
