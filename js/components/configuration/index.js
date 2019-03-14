@@ -21,6 +21,7 @@ class Configuration extends React.Component {
             numberOfDrinks: "",
             refreshingTime: "",
             drink: this._getFreshDrink(),
+
         };
 
     }
@@ -62,6 +63,7 @@ class Configuration extends React.Component {
     }
 
 
+
     onSubmitForm() {
         event.preventDefault();
         if (this.state.numberOfDrinks < 1 || this.state.numberOfDrinks > 6) {
@@ -70,17 +72,29 @@ class Configuration extends React.Component {
         }
         else if (this.state.refreshingTime < 20 || this.state.refreshingTime > 600) {
             console.log("Veuillez entrer un nombre de boissons compris entre 1 et 6");
-            
+            return;
+        }
+        else if (this.state.length !== this.state.numberOfDrinks) {
+            console.log("Veuillez entrer le bon nombre de boisson choisi au préalable");
+            return;
         }
         else {
-            ConfigurationActions.setRefraishingTimeInterval(this.state.refreshingTime);
-            ConfigurationActions.setNumberOfDrinks(this.state.numberOfDrinks);
-            return <Redirect to='/charts' />
-            
+            ConfigurationActions.setRefreshingTimeInterval(this.state.refreshingTime);
+            ConfigurationActions.setNumberOfDrinks(this.state.numberOfDrinks);            
         }
     }
 
     //Actions calls methods
+
+    _addConfig(event) {
+        event.preventDefault();
+
+        if (!this.state.refreshingTime || !this.state.numberOfDrinks) {
+            return;
+        }
+        ConfigurationActions.setRefreshingTimeInterval(this.state.refreshingTime);
+        ConfigurationActions.setNumberOfDrinks(this.state.numberOfDrinks);
+    }
 
     _addNewDrink(event) {
         event.preventDefault();
@@ -91,28 +105,18 @@ class Configuration extends React.Component {
         if(!(parseInt(this.state.drink.minPrice) < parseInt(this.state.drink.initialPrice) && parseInt(this.state.drink.initialPrice) < parseInt(this.state.drink.maxPrice))){
             return;
         }
-
         ConfigurationActions.addNewDrink(this.state.drink);
         this.setState({ drink: this._getFreshDrink() });
         document.getElementById("drink-form").reset();
     }
-
-    
-    handleSubmit = (user) => {
-        saveUser(user)
-          .then(() => this.setState(() => ({
-            toDashboard: true
-          })))
-      }
-
-
 
     // render methods
 
     renderSubmitButton() {
         if (this.state.refreshingTime && this.state.numberOfDrinks && ConfigurationStore.getAllDrinks().length > 0) {
             return (
-                <button type="submit" className="btn btn-primary add" >Ca part en Prod</button>
+                <button type="button" className="btn btn-primary add" Ca part en Prod/>
+                
             );
         }
         else {
@@ -138,13 +142,14 @@ class Configuration extends React.Component {
     }
 
     render() {
-        console.log(ConfigurationStore.getAllDrinks())
+        console.log(this.state)
         return (
-            <div>
+            <div className="body-home">
                 <h2 className="configuration-title-general">Configuration Générale</h2>
                 <form id="configuration-general-form" className="form-inline add-item configuration-general-form" onSubmit={this.onSubmitForm.bind(this)}>
                     <input type="text" className="form-control " name="number" value={this.state.numberOfDrinks} onChange={this.handleNumberOfDrinksChange.bind(this)} placeholder="Nombre de Boissons [1; 6]" />
                     <input type="text" className="form-control " name="number" value={this.state.refreshingTime} onChange={this.handleRefreshingTimeIntervalChange.bind(this)} placeholder="Interval de rafraichissement [20; 600] sec" />
+                    <button type="button" className="btn btn-primary add" onClick={this._addConfig.bind(this)}>Ajouter</button>
                 </form>
                 {this._renderAddNewDrink()}
                 <DrinkList />
