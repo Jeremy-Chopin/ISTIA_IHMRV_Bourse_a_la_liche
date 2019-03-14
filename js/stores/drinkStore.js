@@ -11,7 +11,6 @@ class DrinkStore extends EventEmitter {
 		super();
 
 		// Registers action handler with the Dispatcher.
-		Dispatcher.register(this._registerToActions.bind(this));
 	}
 
 	// FLUX NECESSERIES STORES METHODS
