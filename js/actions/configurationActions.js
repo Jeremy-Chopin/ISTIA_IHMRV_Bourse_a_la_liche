@@ -17,11 +17,11 @@ class ConfigurationActions {
 			payload: numberOfDrinks
 		});
 	}
-	setRefraishingTimeInterval(refraishingTimeInterval) {
+	setRefreshingTimeInterval(refreshingTimeInterval) {
 		// Note: This is usually a good place to do API calls.
 		Dispatcher.dispatch({
-			actionType: ActionTypes.SET_REFRAISHING_TIME_INTERVAL,
-			payload: refraishingTimeInterval 
+			actionType: ActionTypes.SET_REFRESHING_TIME_INTERVAL,
+			payload: refreshingTimeInterval 
 		});
 	}
 }

@@ -23,7 +23,7 @@ class Charts extends React.Component {
   initializeDrinkList() {
     let drink = [];
     const drinkListConfiguration = ConfigurationStore.getAllDrinks();
-    let numberOfDrinks = ConfigurationStore._getNumberOfDrink()
+    let numberOfDrinks = ConfigurationStore._getNumberOfDrink();
     for (let i = 0; i < numberOfDrinks; i++) {
       drink.push(
         [drinkListConfiguration[i].name, drinkListConfiguration[i].initialPrice]
@@ -77,13 +77,12 @@ class Charts extends React.Component {
 
 
   renderButton() {
-    const drinkList = ConfigurationStore.getAllDrinks();
-    let numberOfDrinks = ConfigurationStore._getNumberOfDrink();
     let renderButton = [];
-    for (let i = 0; i < numberOfDrinks; i++) {
-      renderButton.push(<input type='button' className="btn btn-success btnConso" value={drinkList[i].name} onClick={} />);
+debugger;
+    for (let i = 0; i < this.state.drink.length; i++) {
+      renderButton.push(<input type='button' className="btn btn-success btnConso" value={this.state.drink[i].name} onClick={console.log('lol')} />);
     }
-    
+    return(renderButton)
     //Corriger renderButton
   }
 
@@ -140,7 +139,7 @@ class Charts extends React.Component {
        //{this.renderButton} a mettre entre div quand ce sera bon
     console.log(this.state)
     return (
-      <div>
+      <div className='body-home'>
         
       </div>
     );

@@ -75,7 +75,6 @@ class ConfigurationStore extends EventEmitter {
 	}
 
 	_getNumberOfDrink() {
-		debugger
 		return _generalConfigurationState.numberOfDrinks;
 	}
 
