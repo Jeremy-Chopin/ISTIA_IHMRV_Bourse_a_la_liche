@@ -1,3 +1,4 @@
 module.exports = {
-    configurationStore: require("./configurationStore")
+    ConfigurationStore: require("./configurationStore"),
+    DrinkStore: require('./drinkStore')
 }

@@ -3,11 +3,11 @@ import ActionTypes from '../constants';
 
 class DrinkActions {
 
-	addNewDrink(drink) {
+	setNewPrices(drinkArray) {
 		// Note: This is usually a good place to do API calls.
 		Dispatcher.dispatch({
-			actionType: ActionTypes.ADD_NEW_DRINK,
-			payload: drink 
+			actionType: ActionTypes.SET_NEW_PRICES,
+			payload: drinkArray 
 		});
 	}
 }
