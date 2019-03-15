@@ -63,9 +63,10 @@ class Configuration extends React.Component {
     }
 
     setRedirect = () => {
+        setTimeout(
         this.setState({
             redirect: true
-        })
+        }), 500);
     }
     renderRedirect = () => {
         if (this.state.redirect) {
@@ -89,7 +90,7 @@ class Configuration extends React.Component {
         }
         else {
             ConfigurationActions.setRefreshingTimeInterval(this.state.refreshingTime);
-            ConfigurationActions.setNumberOfDrinks(this.state.numberOfDrinks);            
+            ConfigurationActions.setNumberOfDrinks(this.state.numberOfDrinks);
         }
     }
 
@@ -98,7 +99,7 @@ class Configuration extends React.Component {
     _addConfig(event) {
         event.preventDefault();
 
-        if (!this.state.refreshingTime || !this.state.numberOfDrinks) {
+        if (!this.state.refreshingTime || !this.state.numberOfDrinks || this.state.refreshingTime < 20 || this.state.refreshingTime > 600 || this.state.numberOfDrinks < 1 || this.state.numberOfDrinks > 6){
             return;
         }
         ConfigurationActions.setRefreshingTimeInterval(this.state.refreshingTime);
@@ -111,7 +112,7 @@ class Configuration extends React.Component {
         if (!this.state.drink.name || !this.state.drink.initialPrice || !this.state.drink.maxPrice || !this.state.drink.minPrice) {
             return;
         }
-        if(!(parseInt(this.state.drink.minPrice) < parseInt(this.state.drink.initialPrice) && parseInt(this.state.drink.initialPrice) < parseInt(this.state.drink.maxPrice))){
+        if (!(parseInt(this.state.drink.minPrice) < parseInt(this.state.drink.initialPrice) && parseInt(this.state.drink.initialPrice) < parseInt(this.state.drink.maxPrice))) {
             return;
         }
         ConfigurationActions.addNewDrink(this.state.drink);
@@ -124,7 +125,7 @@ class Configuration extends React.Component {
     renderSubmitButton() {
         if (this.state.refreshingTime && this.state.numberOfDrinks && ConfigurationStore.getAllDrinks().length > 0) {
             return (
-                <button type="button" className="btn btn-primary add" onClick={this.setRedirect} >Ca part en Prod</button>                
+                <button type="button" className="btn btn-primary add" onClick={this.setRedirect} >Ca part en Prod</button>
             );
         }
         else {
@@ -151,6 +152,7 @@ class Configuration extends React.Component {
 
     render() {
         console.log(this.state)
+        console.log(ConfigurationStore._getNumberOfDrink())
         return (
             <div className="body-home">
                 <h2 className="configuration-title-general">Configuration Générale</h2>

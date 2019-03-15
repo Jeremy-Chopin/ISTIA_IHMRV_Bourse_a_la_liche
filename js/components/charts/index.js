@@ -83,7 +83,6 @@ class Charts extends React.Component {
 
 
   renderButton() {
-    debugger
     let renderButton = [];
     for (let i = 0; i < this.state.drink.length; i++) {
       renderButton.push(<input type='button' className="btn btn-primary btnConso" value={this.state.drink[i][0].name} onClick={this.handleOnClickLicheButton.bind(this)} />);
