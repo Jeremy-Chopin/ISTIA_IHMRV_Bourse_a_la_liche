@@ -26,7 +26,11 @@ class Charts extends React.Component {
     let numberOfDrinks = ConfigurationStore._getNumberOfDrink();
     for (let i = 0; i < numberOfDrinks; i++) {
       drink.push(
-        [drinkListConfiguration[i].name, drinkListConfiguration[i].initialPrice]
+        [
+          { 'name': drinkListConfiguration[i].name},
+          { 'currentPrice' : drinkListConfiguration[i].initialPrice},
+          { 'sales': 0}
+        ]
       );
     }
     return (drink)
@@ -47,7 +51,6 @@ class Charts extends React.Component {
   calculPrice(boisson, actualconsommation) {
 
     var x = actualconsommation / boisson.consommationPrecendente * boisson.coefficientMarge;
-
     if (Math.abs(x - boisson.coefficientMarge) > 0.2) {
       if (x < boisson.coefficientMarge) {
         x = boisson.coefficientMarge - 0.2
@@ -74,13 +77,16 @@ class Charts extends React.Component {
     boisson.consommationPrecendente = actualconsommation;
   }
 
+  handleOnClickLicheButton(event){
+    console.log(event)
+  }
 
 
   renderButton() {
+    debugger
     let renderButton = [];
-debugger;
     for (let i = 0; i < this.state.drink.length; i++) {
-      renderButton.push(<input type='button' className="btn btn-success btnConso" value={this.state.drink[i].name} onClick={console.log('lol')} />);
+      renderButton.push(<input type='button' className="btn btn-primary btnConso" value={this.state.drink[i][0].name} onClick={this.handleOnClickLicheButton.bind(this)} />);
     }
     return(renderButton)
     //Corriger renderButton
@@ -140,7 +146,7 @@ debugger;
     console.log(this.state)
     return (
       <div className='body-home'>
-        
+        {this.renderButton()}
       </div>
     );
   }
