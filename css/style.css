@@ -62,6 +62,7 @@ form .add-drink{
     display: inline-block;
     height: 100vh;
     width: 100vw;
+    background: linear-gradient( rgba(0, 0, 0, 0.5));
     background-image: url("res/beerBackground.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -82,3 +83,47 @@ form .add-drink{
     text-align: center;
     margin: 15% 0;
 }
+
+
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.configuration-form{
+    display: block;
+}
+
+
+
+.configuration-general-form, .configuration-title-general{
+    margin-left: 15%;
+}
+
+.configuration-drink-form, .configuration-title-drink, .drink-list{
+    margin-left: 25%;
+}
+
+.drink-list {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    margin: 20px 25% 20px 25%;
+}
+
+.drink-name, .initial-price, .min-price, .max-price {
+    margin-right: 30px;
+}
+.min-price{
+    color: #d64541;
+}
+.max-price{
+    color: #26a65b;
+}
+
+.drink-sales-getter{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+

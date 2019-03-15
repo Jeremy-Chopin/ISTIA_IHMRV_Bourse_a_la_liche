@@ -25,8 +25,8 @@ class ConfigurationStore extends EventEmitter {
 			case ActionTypes.SET_NUMBER_OF_DRINKS:
 				this._setNumberOfDrink(action.payload);
 				break;
-			case ActionTypes.SET_REFRAISHING_TIME_INTERVAL:
-				this._setRefraishingTimeInterval(action.payload);
+			case ActionTypes.SET_REFRESHING_TIME_INTERVAL:
+				this._setRefreshingTimeInterval(action.payload);
 				break;
 		}
 	}
@@ -43,6 +43,7 @@ class ConfigurationStore extends EventEmitter {
 
 	// CONFIGURATION STORE OWN METHODS
 
+	//SETTERS
 	// Adds a new item to the list and emits a CHANGED event. 
 	_addNewDrink(drink) {
 		drink.id = _drinkState.length;
@@ -50,13 +51,7 @@ class ConfigurationStore extends EventEmitter {
 		this.emit(CHANGE);
 	}
 
-	// Return all drinks for listing items
-	getAllDrinks() {
-		return _drinkState;
-	}
-
-
-	// Adds a new item to the list and emits a CHANGED event. 
+		// Adds a new item to the list and emits a CHANGED event. 
 	_addNewPrices(drink) {
 		drink.id = _drinkState.length;
 		_drinkState.push(drink);
@@ -64,30 +59,28 @@ class ConfigurationStore extends EventEmitter {
 	}
 
 	_setNumberOfDrink(numberOfDrinks) {
-		_generalConfigurationState.push(numberOfDrinks);
+		_generalConfigurationState.numberOfDrinks = numberOfDrinks;
 		this.emit(CHANGE);
 	}
 
-	_setRefraishingTimeInterval(refraishingTimeInterval) {
-		_generalConfigurationState.push(refraishingTimeInterval);
+	_setRefreshingTimeInterval(refreshingTimeInterval) {
+		_generalConfigurationState.refreshingTimeInterval = refreshingTimeInterval;
 		this.emit(CHANGE);
+	}
+
+	// GETTERS
+	// Return all drinks for listing items
+	getAllDrinks() {
+		return _drinkState;
 	}
 
 	_getNumberOfDrink() {
+		debugger
 		return _generalConfigurationState.numberOfDrinks;
 	}
 
-	_getRefraishingTimeInterval() {
-		return _generalConfigurationState.refraishingTimeInterval;
-	}
-
-	// Returns last drink item
-	getLastPrices() {
-		return pricesState[pricesState.length - 1];
-	}
-
-	getLastNPrices(limit) {
-		return pricesState
+	_getRefreshingTimeInterval() {
+		return _generalConfigurationState.refreshingTimeInterval;
 	}
 }
 export default new ConfigurationStore();
