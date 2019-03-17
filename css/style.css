@@ -131,3 +131,13 @@ html{
     justify-content: space-around;
 }
 
+.sales-button{
+    display: flex;
+    justify-content: space-evenly;
+    max-height: 30px;
+    margin-top: calc(100vh - 30px);
+}
+
+.le-sang-de-ces-morts{
+    background-color: white;
+}

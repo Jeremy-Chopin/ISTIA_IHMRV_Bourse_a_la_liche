@@ -1,8 +1,14 @@
 import React from 'react';
-import ConfigurationActions from '../../actions/ConfigurationActions';
-import ConfigurationStore from '../../stores/configurationStore';
-import { Redirect } from 'react-router-dom'
 
+// ACTIONS
+import ConfigurationActions from '../../actions/ConfigurationActions';
+import DrinkAction from '../../actions/drinkActions';
+
+// STORES
+import ConfigurationStore from '../../stores/configurationStore';
+
+// COMPONENT
+import { Redirect } from 'react-router-dom'
 import DrinkList from './drinkList';
 
 class Configuration extends React.Component {
@@ -64,9 +70,9 @@ class Configuration extends React.Component {
 
     setRedirect = () => {
         setTimeout(
-        this.setState({
-            redirect: true
-        }), 500);
+            this.setState({
+                redirect: true
+            }), 1000);
     }
     renderRedirect = () => {
         if (this.state.redirect) {
@@ -76,6 +82,7 @@ class Configuration extends React.Component {
 
     onSubmitForm() {
         event.preventDefault();
+        //TODO : Changer console.log en Toast style react-toast
         if (this.state.numberOfDrinks < 1 || this.state.numberOfDrinks > 6) {
             console.log("Veuillez entrer un nombre en 1 et 6");
             return;
@@ -99,7 +106,7 @@ class Configuration extends React.Component {
     _addConfig(event) {
         event.preventDefault();
 
-        if (!this.state.refreshingTime || !this.state.numberOfDrinks || this.state.refreshingTime < 20 || this.state.refreshingTime > 600 || this.state.numberOfDrinks < 1 || this.state.numberOfDrinks > 6){
+        if (!this.state.refreshingTime || !this.state.numberOfDrinks || this.state.refreshingTime < 20 || this.state.refreshingTime > 600 || this.state.numberOfDrinks < 1 || this.state.numberOfDrinks > 6) {
             return;
         }
         ConfigurationActions.setRefreshingTimeInterval(this.state.refreshingTime);
@@ -151,8 +158,6 @@ class Configuration extends React.Component {
     }
 
     render() {
-        console.log(this.state)
-        console.log(ConfigurationStore._getNumberOfDrink())
         return (
             <div className="body-home">
                 <h2 className="configuration-title-general">Configuration Générale</h2>
@@ -167,6 +172,24 @@ class Configuration extends React.Component {
                 {this.renderRedirect()}
             </div>
         );
+    }
+
+
+    componentWillUnmount() {
+        let drink = [];
+        let configDrink = ConfigurationStore.getAllDrinks();
+        let numberOfDrinks = configDrink.length;
+        debugger
+        for (let i = 0; i < numberOfDrinks; i++) {
+            drink.push(
+                {
+                    name: configDrink[i].name,
+                    sales: 0,
+                    prices: [configDrink[i].initialPrice]
+                }
+            );
+        }
+        DrinkAction.setNewPrices(drink);
     }
 }
 export default Configuration;

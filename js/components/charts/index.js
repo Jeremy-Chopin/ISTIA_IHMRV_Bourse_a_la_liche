@@ -1,51 +1,64 @@
 import React from 'react';
+
+// STORES
 import ConfigurationStore from '../../stores/configurationStore';
+import DrinkStore from '../../stores/drinkStore';
+
+
+//ACTIONS
 import ConfigurationActions from '../../actions/configurationActions';
 import DrinkActions from '../../actions/drinkActions';
+
+// COMPONENT
+import Graphique from '../charts/graphique'
+import Constants from '../../constants';
 
 class Charts extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
-      boisson1: {
-        nom: 1,
-        prixActuel: 4,
-        prixMax: 6,
-        prixMin: 1,
-        coefficientMarge: 0.5,
-        consommationPrecendente: 1
-      },
-      drink: this.initializeDrinkList()
+      drink: DrinkStore.getDrinksState(), //this.initializeDrinkList(),
+      refreshingTime: ConfigurationStore._getRefreshingTimeInterval,
+      numberOfDrink: DrinkStore.getDrinksState().lenght,
+      chartData: {
+        maximator: [
+          1, 3, 5, 7, 9
+        ],
+        86: [
+          2, 4, 6, 8, 10
+        ],
+        leffRuby: [
+          8, 4, 6, 7, 3
+        ]
+      }
     }
+  }
+
+  getRandomIntilizationValue(min, max) {
+    const value = (Math.random() * (max - min)) + min;
+    return value;
   }
 
   initializeDrinkList() {
-    let drink = [];
-    const drinkListConfiguration = ConfigurationStore.getAllDrinks();
-    let numberOfDrinks = ConfigurationStore._getNumberOfDrink();
-    for (let i = 0; i < numberOfDrinks; i++) {
-      drink.push(
-        [
-          { 'name': drinkListConfiguration[i].name},
-          { 'currentPrice' : drinkListConfiguration[i].initialPrice},
-          { 'sales': 0}
-        ]
-      );
-    }
     return (drink)
-  }
-
-
-  getRandomInitialPrices(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.random() * (max - min) + min;
   }
 
 
   componentWillMount() {
     DrinkActions.setNewPrices(this.state.drink);
+    setInterval(this.calculPrice, this.state.refreshingTime);
+    if(this.state.data.lenght < 2) {
+      for(let indexOfDrink = 0; indexOfDrink < Constants.LIMIT_NUMBER_OF_PRICES ; indexOfDrink++){
+        for(let simulatedOldPrices = 0; simulatedOldPrices < numberOfDrink; simulatedOldPrices++){
+          this.state.drink[indexOfDrink].prices.unshift([
+            getRandomIntilizationValue()
+          ])
+        }
+      }
+    }
+
   }
 
   calculPrice(boisson, actualconsommation) {
@@ -77,77 +90,38 @@ class Charts extends React.Component {
     boisson.consommationPrecendente = actualconsommation;
   }
 
-  handleOnClickLicheButton(event){
+  handleOnClickLicheButton(event) {
     console.log(event)
   }
-
 
   renderButton() {
     let renderButton = [];
     for (let i = 0; i < this.state.drink.length; i++) {
-      renderButton.push(<input type='button' className="btn btn-primary btnConso" value={this.state.drink[i][0].name} onClick={this.handleOnClickLicheButton.bind(this)} />);
+      renderButton.push(<input type='button' className="btn btn-primary btnConso" value={this.state.drink[i][0].name} /*onClick={this.handleOnClickLicheButton.bind(this)}*/ />);
     }
-    return(renderButton)
-    //Corriger renderButton
+    return (renderButton)
   }
 
 
   render() {
-    let btnDisp;
-    const bitasse = 3;
-    /*
-        switch (bitasse) {
-          case 2:
-            btnDisp = (
-              <div className="container">
-                <div className="row">
-                  <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 1' />
-                  <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 2' />
-                </div>
-              </div>
-            );
-    
-            break;
-    
-          case 3:
-            btnDisp = (
-              <div className="container">
-                <div className="row">
-                  <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 1' />
-                  <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 2' />
-                  <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 3' />
-                </div>
-              </div>
-            );
-    
-            break;
-    
-          case 4:
-            btnDisp = (
-              <div className="container">
-                <div className="row">
-                  <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 1' />
-                  <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 2' />
-                  <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 3' />
-                  <input type='button' className="col-md-2 btn btn-success btnConso" value='Boisson 4' />
-                </div>
-              </div>
-            );
-    
-            console.log("OOOOOOOOOH DJA DJAAAAA");
-            break;
-    
-          default:
-            break;
-        }
-        */
-       //{this.renderButton} a mettre entre div quand ce sera bon
-    console.log(this.state)
     return (
       <div className='body-home'>
-        {this.renderButton()}
+        <div className='chart-dom'>
+          <Graphique
+            data={this.state.data}
+          />
+        </div>
+
+
+        <div className='container sales-buttons'>
+          {this.renderButton()}
+        </div>
       </div>
     );
   }
+
+
+  
+
 }
-export default Charts
+export default Charts;

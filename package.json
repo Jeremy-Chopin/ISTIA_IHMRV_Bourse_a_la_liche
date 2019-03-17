@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "chart.js": "^2.7.3",
+    "react-chartjs-2": "^2.7.4",
     "flux": "^3.1.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.3.1",
-    "react-timeout": "^1.1.2"
+    "react-timeout": "^1.1.2",
+    "react-toasts": "^3.0.1"
   },
   "devDependencies": {
     "babel": "^6.23.0",
