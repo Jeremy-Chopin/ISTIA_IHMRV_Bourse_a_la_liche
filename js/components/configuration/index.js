@@ -1,7 +1,7 @@
 import React from 'react';
 
 // ACTIONS
-import ConfigurationActions from '../../actions/ConfigurationActions';
+import ConfigurationActions from '../../actions/configurationActions';
 import DrinkAction from '../../actions/drinkActions';
 
 // STORES
